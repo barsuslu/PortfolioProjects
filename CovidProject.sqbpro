@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/baris/Desktop/COVID Project/Covid Project.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="125"/><column_width id="3" width="8224"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,24:mainCountryRollingPercentVac"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="ContinentDeathCount" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="151"/><column index="2" value="200"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="CountryDeathCount" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="79"/><column index="2" value="200"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="CountryDeathRate" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="117"/><column index="2" value="200"/><column index="3" value="103"/><column index="4" value="222"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="CountryInfectionRate" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="79"/><column index="2" value="228"/><column index="3" value="103"/><column index="4" value="211"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="CountryRollingPercentVac" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="92"/><column index="2" value="79"/><column index="3" value="75"/><column index="4" value="103"/><column index="5" value="164"/><column index="6" value="293"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="CovidDeaths" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="92"/><column index="2" value="92"/><column index="3" value="146"/><column index="4" value="91"/><column index="5" value="103"/><column index="6" value="108"/><column index="7" value="104"/><column index="8" value="201"/><column index="9" value="119"/><column index="10" value="115"/><column index="11" value="212"/><column index="12" value="216"/><column index="13" value="212"/><column index="14" value="300"/><column index="15" value="227"/><column index="16" value="223"/><column index="17" value="300"/><column index="18" value="166"/><column index="19" value="116"/><column index="20" value="224"/><column index="21" value="133"/><column index="22" value="241"/><column index="23" value="213"/><column index="24" value="300"/><column index="25" value="230"/><column index="26" value="300"/></column_widths><filter_values><column index="3" value="united s"/></filter_values><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="CovidVaccinations" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="92"/><column index="2" value="92"/><column index="3" value="95"/><column index="4" value="91"/><column index="5" value="99"/><column index="6" value="103"/><column index="7" value="234"/><column index="8" value="230"/><column index="9" value="196"/><column index="10" value="300"/><column index="11" value="123"/><column index="12" value="140"/><column index="14" value="168"/><column index="15" value="171"/><column index="16" value="220"/><column index="17" value="164"/><column index="18" value="261"/><column index="19" value="290"/><column index="20" value="293"/><column index="21" value="300"/><column index="22" value="300"/><column index="23" value="158"/><column index="24" value="177"/><column index="25" value="115"/><column index="26" value="140"/><column index="27" value="140"/><column index="28" value="145"/><column index="29" value="157"/><column index="30" value="206"/><column index="31" value="187"/><column index="32" value="151"/><column index="33" value="134"/><column index="34" value="208"/><column index="35" value="262"/><column index="36" value="145"/><column index="37" value="250"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="PercentPopulationVaccinated" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="92"/><column index="2" value="79"/><column index="3" value="75"/><column index="4" value="103"/><column index="5" value="164"/><column index="6" value="243"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1">-- COVID PROJECT SQL QUERIES
+
+-- LET'S BREAK THIS DOWN TO UK.
+
+
+-- The below query shows the death percentage of if somebody had the COVID on that day in UK. (total_deaths vs. total_cases)
+
+SELECT
+	location,
+	date,
+	total_cases,
+	total_deaths,
+	(total_deaths/total_cases)*100  AS death_percentage
+FROM CovidDeaths
+WHERE location = 'United Kingdom'
+ORDER BY 1, 2
+
+
+-- The below query shows what percentage of population got COVID in UK. (total_cases vs. population)
+
+SELECT
+	location,
+	date,
+	total_cases,
+	population,
+	(total_cases/population)*100  AS cases_percentage
+FROM CovidDeaths
+WHERE location = 'United Kingdom'
+ORDER BY 1, 2
+
+-- LET'S BREAK THIS TOWN TO COUNTRIES
+
+-- NOTE: (WHERE continent IS NOT NULL) is for not including automatic location groupings in the database 
+-- like World, Europe, Asia etc. (all of their continents are null)
+
+-- The below query shows the countries with highest infection rate to population.
+
+SELECT
+	location,
+	MAX(total_cases) AS Highest_Infection_Count,
+	population,
+	MAX((total_cases/population))*100  AS cases_max_percentage
+FROM CovidDeaths
+WHERE continent IS NOT NULL
+GROUP BY 1, 3
+ORDER BY 4 DESC
+
+-- The below query shows the countries with highest death count per population.
+
+SELECT
+	location,
+	MAX(total_deaths) AS Highest_Death_Count
+FROM CovidDeaths
+WHERE continent IS NOT NULL
+GROUP BY 1
+ORDER BY 2 DESC
+
+-- LET'S BREAK THINGS BY CONTINENT
+
+-- The below query shows the continents with the highest death count.
+
+SELECT
+	continent,
+	MAX(total_deaths) AS Highest_Death_Count
+FROM CovidDeaths
+WHERE continent IS NOT NULL
+GROUP BY 1
+ORDER BY 2 DESC
+
+-- LET'S BREAK THINGS GLOBALLY
+
+-- The below query shows the total cases and deaths and also average death pecentage globally.
+
+SELECT
+	SUM(new_cases) AS total_cases_global,
+	SUM(new_deaths) AS total_deaths_global,
+	(SUM(new_deaths)/SUM(new_cases))*100  AS death_percentage_global
+FROM CovidDeaths
+WHERE continent IS NOT NULL
+
+-- LET'S JOIN BOTH CovidDeaths AND CovidVaccinations TABLES TOGETHER
+
+-- The below query shows the rolling daily count for vacciantions for each country, by using WINDOW FUNCTIONS.
+
+SELECT 
+	cd.continent,
+	cd.location,
+	cd.date,
+	cd.population,
+	cv.new_vaccinations,
+	SUM(cv.new_vaccinations) OVER (PARTITION BY cd.location ORDER BY cd.date) AS rolling_count_vaccinations
+FROM CovidDeaths cd
+JOIN CovidVaccinations cv
+	ON  cd.location = cv.location
+	AND cd.date = cv.date
+WHERE cd.continent IS NOT NULL
+ORDER BY 2, 3 
+
+-- The below query shows what percentage of total population got vaccinated in each date, by using SUB-TABLES.
+
+WITH t1 AS (
+SELECT 
+	cd.continent,
+	cd.location,
+	cd.date,
+	cd.population,
+	cv.new_vaccinations,
+	SUM(cv.new_vaccinations) OVER (PARTITION BY cd.location ORDER BY cd.date) AS rolling_count_vaccinations
+FROM CovidDeaths cd
+JOIN CovidVaccinations cv
+	ON  cd.location = cv.location
+	AND cd.date = cv.date
+WHERE cd.continent IS NOT NULL
+ORDER BY 2, 3 
+)
+SELECT
+	continent,
+	location,
+	date,
+	population,
+	new_vaccinations,
+	((rolling_count_vaccinations/population) * 100) AS rolling_perct_of_population_vac
+FROM t1
+
+-- To end, created views for each category to use in visualizations and dashboards.</sql><current_tab id="0"/></tab_sql></sqlb_project>
